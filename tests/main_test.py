@@ -44,7 +44,7 @@ def fixture_mock_client(monkeypatch):
         "GoogleAdsService": client.google_ads_service,
     }
     client.get_service.side_effect = service_map.get
-    monkeypatch.setattr("src.main.client", client)
+    monkeypatch.setattr("src.main.get_client", lambda: client)
     return client
 
 
@@ -70,7 +70,6 @@ class TestListAccounts:
         ) = mock_response
         async with Client(mcp) as client:
             result = await client.call_tool("list_accounts")
-
         assert isinstance(result.content[0], TextContent)
         assert result.content[0].text == expected_json
 
@@ -93,7 +92,6 @@ class TestListAccounts:
         ) = mock_response
         async with Client(mcp) as client:
             result = await client.call_tool("list_accounts")
-
         assert isinstance(result.content[0], TextContent)
         assert result.content[0].text == expected_json
 
@@ -147,7 +145,6 @@ class TestSearchStream:
             ],
             separators=(",", ":"),
         )
-
         assert isinstance(result.content[0], TextContent)
         assert result.content[0].text == expected_list
 

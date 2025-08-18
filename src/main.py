@@ -36,12 +36,21 @@ from google.ads.googleads.v20.services.types.google_ads_service import (
 
 mcp = FastMCP("Google Ads")
 
-os.environ["GOOGLE_ADS_CONFIGURATION_FILE_PATH"] = "./google-ads.yaml"
-client: GoogleAdsClient = GoogleAdsClient.load_from_storage()
+_CLIENT: GoogleAdsClient | None = None
+
+
+def get_client() -> GoogleAdsClient:
+    """Initializes and returns the Google Ads client, cached for reuse."""
+    global _CLIENT
+    if _CLIENT is None:
+        os.environ["GOOGLE_ADS_CONFIGURATION_FILE_PATH"] = "./google-ads.yaml"
+        _CLIENT = GoogleAdsClient.load_from_storage()
+    return _CLIENT
 
 
 @mcp.tool
 def list_accounts():
+    client = get_client()
     customer_service: CustomerServiceClient = client.get_service(
         "CustomerService"
     )
@@ -57,6 +66,7 @@ def search_stream(
     query: str,
     login_customer_id: str | None = None,
 ):
+    client = get_client()
     if login_customer_id:
         client.login_customer_id = login_customer_id
     service: GoogleAdsServiceClient = client.get_service("GoogleAdsService")
