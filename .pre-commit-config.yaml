@@ -42,7 +42,7 @@ repos:
           - "-- "
           - ""
           - --skip_pattern
-          - .*\.md|.*\.config\.js|\.pylintrc|LICENSE|.*\.toml|\.gitignore|\.git|requirements\.txt|google-ads.yaml|uv.lock
+          - .*\.md|.*\.config\.js|\.pylintrc|LICENSE|.*\.toml|\.gitignore|\.git|requirements\.txt|google-ads.yaml|uv.lock|.python-version
       - id: check-google-doc-style
       - id: check-links
 
@@ -78,16 +78,19 @@ repos:
     rev: v0.12.9
     hooks:
       - id: ruff-check
-        args: [--fix]
+        args:
+          - --fix
       - id: ruff-format
   - repo: local
     hooks:
       - id: python-testing
         name: Running Python tests
-        entry: pytest
+        entry: uv run pytest
         language: system
         pass_filenames: false
         always_run: true
+        types:
+          - python
 
   # Markdown
   - repo: https://github.com/executablebooks/mdformat
@@ -114,6 +117,8 @@ repos:
     rev: 3.4.2
     hooks:
       - id: sqlfluff-lint
-        additional_dependencies: ["dbt-bigquery"]
+        additional_dependencies:
+          - dbt-bigquery
       - id: sqlfluff-fix
-        additional_dependencies: ["dbt-bigquery"]
+        additional_dependencies:
+          - dbt-bigquery

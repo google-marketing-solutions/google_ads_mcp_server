@@ -277,3 +277,4 @@ convention = "google"
 
 [tool.uv]
 package = true
+required-version = ">=0.8.11"
