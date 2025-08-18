@@ -5,7 +5,7 @@
 This is the Google Ads Model Context Protocol (MCP) server designed to provide a
 standardized way to integrate an LLM with Google Ads.
 
-[![Continuous Integration](https://github.com/google-marketing-solutions/google_ads_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/google-marketing-solutions/google_ads_mcp/actions/workflows/ci.yml)
+[![Continuous Integration](https://github.com/google-marketing-solutions/google_ads_mcp_server/actions/workflows/ci.yml/badge.svg)](https://github.com/google-marketing-solutions/google_ads_mcp_server/actions/workflows/ci.yml)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-4285F4.svg)](https://google.github.io/styleguide/pyguide.html)
 [![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-fe5196.svg?logo=conventionalcommits)](https://conventionalcommits.org)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
