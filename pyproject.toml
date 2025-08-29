@@ -44,6 +44,9 @@ license = {file = "LICENSE"}
 authors = [{name = "Tony Coconate", email = "coconate@google.com"}]
 dependencies = ["fastmcp", "google-ads"]
 
+[project.scripts]
+server = "main:main"
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
